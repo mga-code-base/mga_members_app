@@ -1,0 +1,17 @@
+* text=auto eol=lf
+
+*.bat text eol=crlf
+
+*.dart text
+*.yaml text
+*.yml text
+*.json text
+*.md text
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.jks binary
+*.keystore binary
