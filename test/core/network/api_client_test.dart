@@ -25,7 +25,7 @@ void main() {
       await client.get('/branch/all');
 
       expect(captured.method, 'GET');
-      expect(captured.url.toString(), 'https://api.06071995.xyz/api/branch/all');
+      expect(captured.url.toString(), 'https://api.06071995.xyz/api/v1/branch/all');
     });
 
     test('a custom baseUrl overrides the default (used by PostureApiService)', () async {
@@ -66,7 +66,7 @@ void main() {
       await client.delete('/grievances/5');
 
       expect(captured.method, 'DELETE');
-      expect(captured.url.path, '/api/grievances/5');
+      expect(captured.url.path, '/api/v1/grievances/5');
     });
 
     test('the raw http.Response is returned untouched', () async {

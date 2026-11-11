@@ -6,8 +6,7 @@ import 'package:path/path.dart' as path;
 import '../core/network/api_client.dart';
 
 class PostureApiService {
-  static const String _baseUrl = 'https://mga-posture-corrector-service-production.up.railway.app';
-  static final ApiClient _client = ApiClient(baseUrl: _baseUrl);
+  static final ApiClient _client = ApiClient();
 
   static Future<Map<String, dynamic>> uploadPostureVideo(String videoPath) async {
     final File videoFile = File(videoPath);
@@ -21,7 +20,7 @@ class PostureApiService {
     try {
       debugPrint('=== [STEP 1: FETCHING PRE-SIGNED URL FROM CLOUD] ===');
 
-      final urlResponse = await _client.get('/api/analyze/request-url', query: {'fileName': fileName});
+      final urlResponse = await _client.get('/analyze/request-url', query: {'fileName': fileName});
 
       debugPrint('► Cloud Server Response Status Code: ${urlResponse.statusCode}');
       debugPrint('► Cloud Server Response Body: ${urlResponse.body}');
@@ -122,7 +121,7 @@ class PostureApiService {
 
       debugPrint('=== [STEP 3: INITIALIZING MOVENET KINEMATICS PIPELINE ON RAILWAY] ===');
 
-      final processingResponse = await _client.post('/api/analyze/squat', body: {'fileKey': fileKey}, auth: false);
+      final processingResponse = await _client.post('/analyze/squat', body: {'fileKey': fileKey});
 
       final Map<String, dynamic> analysisData = jsonDecode(processingResponse.body);
 
